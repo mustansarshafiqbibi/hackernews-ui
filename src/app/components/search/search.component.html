@@ -1,0 +1,23 @@
+<div style="padding: 20px; ">
+<form (ngSubmit)="onSearch()" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: flex-end;">
+	<mat-form-field appearance="outline" style="flex: 1;">
+		<mat-label>Search stories...</mat-label>
+		<input matInput [(ngModel)]="query" name="query" required />
+	</mat-form-field>
+	<button mat-raised-button color="primary" type="submit" [disabled]="loading">Search</button>
+</form>
+<div *ngIf="loading" class="centered">
+	<mat-spinner diameter="30"></mat-spinner>
+</div>
+<mat-card *ngIf="error" color="warn">{{ error }}</mat-card>
+<!-- <mat-list *ngIf="results.length">
+	<mat-list-item *ngFor="let story of results">
+		<mat-icon matListIcon>article</mat-icon>
+		<div matLine *ngIf="story.title">
+			<a *ngIf="story.url; else noLink" [href]="story.url" target="_blank" rel="noopener">{{ story.title }}</a>
+			<ng-template #noLink>{{ story.title }} <span style="color: #888;">(no link)</span></ng-template>
+		</div>
+	</mat-list-item>
+	<mat-divider></mat-divider>
+</mat-list> -->
+</div>

@@ -1,0 +1,41 @@
+
+<mat-card>
+	<app-search (searchResults)="onSearchResults($event)"></app-search>
+</mat-card>
+
+<div *ngIf="loading" class="centered">
+	<mat-spinner diameter="40"></mat-spinner>
+</div>
+<mat-card *ngIf="error" color="warn">{{ error }}</mat-card>
+
+<mat-list *ngIf="!loading && !error && searchResults && searchResults.length > 0">
+	<mat-list-item *ngFor="let story of searchResults">
+		
+		<div matLine *ngIf="story.title">
+			<a *ngIf="story.url; else noLink" [href]="story.url" target="_blank" rel="noopener">{{ story.title }}</a>
+			<ng-template #noLink>{{ story.title }} <span style="color: #888;">(no link)</span></ng-template>
+		</div>
+	</mat-list-item>
+	<mat-divider></mat-divider>
+</mat-list>
+
+<mat-list *ngIf="!loading && !error && (!searchResults || searchResults.length === 0)">
+	<mat-list-item *ngFor="let story of stories">
+		
+		<div matLine *ngIf="story.title">
+			<a *ngIf="story.url; else noLink" [href]="story.url" target="_blank" rel="noopener">{{ story.title }}</a>
+			<ng-template #noLink>{{ story.title }} <span style="color: #888;">(no link)</span></ng-template>
+		</div>
+	</mat-list-item>
+	<mat-divider></mat-divider>
+</mat-list>
+
+<app-pagination
+	*ngIf="!loading && !error && (!searchResults || searchResults.length === 0) && stories.length"
+	[page]="page"
+	[pageCount]="pageCount"
+	[pageSize]="pageSize"
+	[totalStories]="totalStories"
+	(prevPage)="prevPage()"
+	(nextPage)="nextPage()"
+></app-pagination>

@@ -1,0 +1,11 @@
+<div class="mat-elevation-z2" style="display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 1rem 0;">
+	<button mat-raised-button color="primary" (click)="prevPage.emit()" [disabled]="page === 1">
+		<mat-icon>chevron_left</mat-icon>
+		Previous
+	</button>
+	<span>Page {{ page }} of {{ pageCount }}</span>
+	<button mat-raised-button color="primary" (click)="nextPage.emit()" [disabled]="page * pageSize >= totalStories">
+		Next
+		<mat-icon>chevron_right</mat-icon>
+	</button>
+</div>
