@@ -31,7 +31,7 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
       - name: Run Jasmine tests with coverage
-        run: npx ng test
+        run: npx ng test --watch=false --browsers ChromeHeadless
       
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client

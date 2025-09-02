@@ -30,9 +30,8 @@ describe('HackernewsService', () => {
     service.getStories(2, 10).subscribe(res => {
       expect(res).toEqual(mockResponse);
     });
-    const req = httpMock.expectOne(r => {
-      return r.urlWithParams === 'https://localhost:7222/api/webnews?page=2&pageSize=10';
-    });
+  const expectedUrl = `${service['apiUrl']}?page=2&pageSize=10`;
+  const req = httpMock.expectOne(r => r.urlWithParams === expectedUrl);
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
@@ -42,9 +41,8 @@ describe('HackernewsService', () => {
     service.getStories(1, 20, 'foo').subscribe(res => {
       expect(res).toEqual(mockResponse);
     });
-    const req = httpMock.expectOne(r => {
-      return r.urlWithParams === 'https://localhost:7222/api/webnews?page=1&pageSize=20&search=foo';
-    });
+  const expectedUrl = `${service['apiUrl']}?page=1&pageSize=20&search=foo`;
+  const req = httpMock.expectOne(r => r.urlWithParams === expectedUrl);
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
@@ -54,9 +52,8 @@ describe('HackernewsService', () => {
     service.getStories(1, 20, '  bar  ').subscribe(res => {
       expect(res).toEqual(mockResponse);
     });
-    const req = httpMock.expectOne(r => {
-      return r.urlWithParams === 'https://localhost:7222/api/webnews?page=1&pageSize=20&search=bar';
-    });
+  const expectedUrl = `${service['apiUrl']}?page=1&pageSize=20&search=bar`;
+  const req = httpMock.expectOne(r => r.urlWithParams === expectedUrl);
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
@@ -66,9 +63,8 @@ describe('HackernewsService', () => {
     service.getStories().subscribe(res => {
       expect(res).toEqual(mockResponse);
     });
-    const req = httpMock.expectOne(r => {
-      return r.urlWithParams === 'https://localhost:7222/api/webnews?page=1&pageSize=20';
-    });
+  const expectedUrl = `${service['apiUrl']}?page=1&pageSize=20`;
+  const req = httpMock.expectOne(r => r.urlWithParams === expectedUrl);
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
