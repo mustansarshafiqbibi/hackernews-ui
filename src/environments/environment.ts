@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:7222' // Set your local API URL here
+  apiUrl: 'https://webnews-hua3eee9gjbjcbgp.canadacentral-01.azurewebsites.net' // 'http://localhost:7222' 
 };

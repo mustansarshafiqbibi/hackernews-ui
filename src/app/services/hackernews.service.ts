@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HackernewsService {
-  private apiUrl = 'https://localhost:7222/api/webnews'; // Update to your .NET API base URL
+  private apiUrl = `${environment.apiUrl}/api/WebNews`; // Update to your .NET API base URL
 
   constructor(private http: HttpClient) { }
 

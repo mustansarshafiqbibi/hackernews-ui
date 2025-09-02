@@ -30,6 +30,13 @@ jobs:
         run: npm ci
       - name: Build Angular app
         run: npm run build -- --configuration production
+      - name: Run Jasmine tests with coverage
+        run: npx ng test --watch=false --code-coverage
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
